@@ -1,0 +1,27 @@
+---
+- hosts: web
+  tasks:
+  - name: installing git
+    ansible.builtin.yum:
+      name: git
+      state: present
+    tags: git
+
+  - name: installing tree app if not avilable
+    ansible.builtin.yum:
+      name: tree
+      state: present
+    tags: tree    
+
+
+  - name: install apache
+    ansible.builtin.yum:
+      name: httpd
+      state: present
+    tags: apche
+   
+  - name: start the apache service
+    ansible.builtin.service:
+      name: httpd
+      state: started
+    tags: service  

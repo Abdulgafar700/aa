@@ -1,0 +1,16 @@
+---
+- hosts: web
+  tasks:
+  - name: installing httpd
+    yum:  
+      name: httpd
+      state: present
+    when: ansible_os_family == "RedHat"
+
+
+
+  - name: installing apache2
+    apt:  
+      name: apche2
+      state: present
+    when: ansible_os_family == "Debian"  

@@ -1,0 +1,20 @@
+---
+- hosts: ppk
+  tasks:
+  - name: installing apache
+    ansible.builtin.yum:
+      name: httpd
+      state: present
+  - name: start the apache
+    ansible.builtin.service:
+      name: httpd
+      state: started
+  - name: changing the portnumber
+    ansible.builtin.template:
+      src: /root/playbook/httpd.conf.j2
+      dest: /etc/httpd/conf/httpd.conf
+  - name: restart the apache web server
+    ansible.builtin.service:
+      name: httpd
+      state: started
+    
